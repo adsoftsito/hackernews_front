@@ -62,8 +62,8 @@ const Login = () => {
       email: formState.email,
       password: formState.password
     },
-    onCompleted: ({ signup }) => {
-      localStorage.setItem(AUTH_TOKEN, signup.token);
+    onCompleted: ({ createUser }) => {
+      //localStorage.setItem(AUTH_TOKEN, signup.token);
       navigate('/');
     }
   });
