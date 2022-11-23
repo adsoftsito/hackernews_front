@@ -21,7 +21,9 @@ const Header = () => {
         >
           search
         </Link>
+
         {authToken && (
+
           <div className="flex">
             <div className="ml1">|</div>
             <Link
@@ -31,7 +33,37 @@ const Header = () => {
               submit
             </Link>
           </div>
+
+       
         )}
+        {authToken && (
+   
+          <div className="flex">
+            <div className="ml1">|</div>
+            <Link
+              to="/linear"
+              className="ml1 no-underline black"
+            >
+              linear
+            </Link>
+          </div>
+
+   
+        )}
+        {authToken && (
+  
+          <div className="flex">
+            <div className="ml1">|</div>
+            <Link
+              to="/resnet"
+              className="ml1 no-underline black"
+            >
+              resnet
+            </Link>
+          </div>
+ 
+        )}
+        
       </div>
       <div className="flex flex-fixed">
         {authToken ? (

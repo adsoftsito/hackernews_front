@@ -4,6 +4,8 @@ import CreateLink from './CreateLink';
 import Header from './Header';
 import { Route, Routes } from 'react-router-dom';
 import Login from './Login';
+import Linear from './Linear';
+import Resnet from './Resnet';
 
 const App = () => {
 
@@ -18,6 +20,9 @@ const App = () => {
           <Route path="/" element={<LinkList/>} />
 
           <Route path="/create" element={<CreateLink/>} />
+          <Route path="/linear" element={<Linear/>} />
+          <Route path="/resnet" element={<Resnet/>} />
+
           <Route path="/login" element={<Login/>} />
 
 	</Routes>
