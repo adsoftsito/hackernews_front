@@ -1,19 +1,14 @@
 import React, { useState } from 'react';
-import { useMutation, gql } from '@apollo/client';
+import { useQuery, gql } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
 
-const CREATE_LINK_MUTATION = gql`
-  mutation PostMutation(
-    $description: String!
-    $url: String!
-  ) {
-    createLink(description: $description, url: $url) {
-      id
-      url
-      description
-    }
+
+const LINEAR_QUERY = gql`
+  query LinearPredictions($values: String!) {
+   linearPredictions(values: $values)   
   }
 `;
+
 
 const Linear = () => {
   const navigate = useNavigate();
@@ -23,15 +18,16 @@ const Linear = () => {
     url: ''
   });
 
-  const [createLink] = useMutation(CREATE_LINK_MUTATION, {
-    variables: {
-      description: formState.description,
-      url: formState.url
-    },
-    onCompleted: () => navigate('/')
-	  
-  });
 
+   const { data } = useQuery(LINEAR_QUERY, {
+     variables: {
+       values: formState.description,
+     },
+   });
+
+
+
+  //console.log(data)
 
   return (
 
@@ -40,8 +36,8 @@ const Linear = () => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-	  createLink();
-	
+	  alert(data.linearPredictions);
+
         }}
       >
         <div className="flex flex-column mt3">

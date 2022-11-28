@@ -1,19 +1,13 @@
 import React, { useState } from 'react';
-import { useMutation, gql } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
+import { useQuery, gql } from '@apollo/client';
 
-const CREATE_LINK_MUTATION = gql`
-  mutation PostMutation(
-    $description: String!
-    $url: String!
-  ) {
-    createLink(description: $description, url: $url) {
-      id
-      url
-      description
-    }
-  }
+const RESNET_QUERY = gql`
+   query ResnetPredictions($photourl: String!) {
+      resnetPredictions(photourl: $photourl)   
+     }
 `;
+
 
 const Resnet = () => {
   const navigate = useNavigate();
@@ -23,13 +17,10 @@ const Resnet = () => {
     url: ''
   });
 
-  const [createLink] = useMutation(CREATE_LINK_MUTATION, {
-    variables: {
-      description: formState.description,
-      url: formState.url
-    },
-    onCompleted: () => navigate('/')
-	  
+  const { data } = useQuery(RESNET_QUERY, {
+       variables: { 
+         photourl: formState.description,
+       },
   });
 
 
@@ -40,8 +31,7 @@ const Resnet = () => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-	  createLink();
-	
+          alert(data.resnetPredictions);	
         }}
       >
         <div className="flex flex-column mt3">
@@ -55,7 +45,7 @@ const Resnet = () => {
               })
             }
             type="text"
-            placeholder="Image to upload..."
+            placeholder="URL image to upload..."
           />
         </div>
         <button type="submit">Submit</button>

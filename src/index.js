@@ -17,9 +17,8 @@ import {
 
 // 2
 const httpLink = createHttpLink({
-  //uri: 'http://localhost:8000/graphql/'
+  uri: 'http://localhost:8000/graphql/'
   //uri: 'https://adsoftsito-fantastic-couscous-695rw76p4q3pp7-8081.preview.app.github.dev/graphql/',
-  uri: 'https://adsoftsito-fantastic-couscous-695rw76p4q3pp7-8000.preview.app.github.dev/graphql/',
 });
 
 
